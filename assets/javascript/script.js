@@ -23,7 +23,7 @@ var createHour = function (blockNum) {
   return hourLi;
 };
 // create task container
-var createTaskContainer = function () {
+var createTask = function () {
   var taskEl = $("<input>")
     .attr("type", "text")
     .attr("id", "task-container")
@@ -53,7 +53,7 @@ var createTimeBlock = function (blockNum) {
   var dateTime = createHour(blockNum);
   timeBlock.append(dateTime);
   // append task containter to inputGrouptime-block
-  var task = createTaskContainer();
+  var task = createTask();
   timeBlock.append(task);
   // append save column with save icon tp inputGroup
   var saveBtn = createSaveBtn();
@@ -76,17 +76,36 @@ var dupTimeBlock = function (workHours) {
     // append to container
   }
 };
-// -------------------------function to display frame work of this page----------------------------------//
+// --------------------------------timeblock functions ends here----------------------------------------//
+// --------------------function to save and load from local storage starts here-------------------------//
+//save new task
+var saveTask = function (taskEl) {
+  localStorage.setItem("dailySchedulerTasks", JSON.stringify(taskEl));
+};
+// load saved task from local storage
+var loadTask = function () {
+  var workHours = 8;
+  tasksArr = JSON.parse(localStorage.getItem("dailySchedulerTasks"));
+  // loop array properties
+  for (var i = 0; i < workHours; i++) {
+    // check see whether the array have value
+    if (tasksArr[i] !== null && tasksArr[i] !== undefined) {
+      console.log(tasksArr[i].task);
+      // select current task input
+      $;
+    }
+  }
+};
+// ---------------------function to save and load from local storage ends here--------------------------//
+// ----------------------run functions to display time blocks starts here-------------------------------//
 // call display current date function
 displayDate(today);
 // call display time block funcitons
 dupTimeBlock();
-// --------------------------------timeblock functions ends here----------------------------------------//
-//save new task
-var saveTask = function (taskEl) {
-  localStorage.setItem("tasks", JSON.stringify(taskEl));
-};
-// load saved task from local storage
+// call display saved task in time block
+loadTask();
+// ----------------------run functions to display time blocks ends here---------------------------------//
+// ----------------------run functions to display time blocks ends here---------------------------------//
 // when input of task changed
 $(".input-group").on("change", "input[type='text']", function () {
   // get changed task
@@ -110,7 +129,7 @@ $(".input-group").on("change", "input[type='text']", function () {
   saveTask(tasksListArr);
 });
 // when save button clicked
-$(".saveBtn").click(function () {
+$(".saveBtn").on("click", function () {
   // get current task in this row
   var taskContent = $(this).parent().prev().val().trim();
   // get resptive time in this row
