@@ -64,7 +64,7 @@ var createTimeBlock = function (blockNum) {
 };
 // for loop to duplicate
 var dupTimeBlock = function (workHours) {
-  workHours = 8;
+  workHours = 9;
   var startHour = 9;
   for (var i = 0; i < workHours; i++) {
     // count for the display hours on this block
@@ -76,6 +76,26 @@ var dupTimeBlock = function (workHours) {
     // append to container
   }
 };
+// auditing the time block
+var auditTimeBlock = function () {
+  // loop through all the
+  var workHours = 9;
+  for (var i = 0; i < workHours; i++) {
+    // get the time
+    var hour = $("#block" + i)
+      .text()
+      .trim();
+    var time = moment(hour, "HH:mm A");
+    if (moment().isAfter(time, "hour")) {
+      $("#blockTask" + i).addClass("past");
+      console.log("pass");
+    } else if (moment().isSame(time, "hour")) {
+      $("#blockTask" + i).addClass("present");
+    } else {
+      $("#blockTask" + i).addClass("future");
+    }
+  }
+};
 // --------------------------------timeblock functions ends here----------------------------------------//
 // --------------------function to save and load from local storage starts here-------------------------//
 //save new task
@@ -84,7 +104,7 @@ var saveTask = function (taskEl) {
 };
 // load saved task from local storage
 var loadTask = function () {
-  var workHours = 8;
+  var workHours = 9;
   tasksListArr = JSON.parse(localStorage.getItem("dailySchedulerTasks"));
   // loop array properties
   for (var i = 0; i < workHours; i++) {
@@ -111,7 +131,8 @@ displayDate(today);
 dupTimeBlock();
 // call display saved task in time block
 loadTask();
-// ----------------------run functions to display time blocks ends here---------------------------------//
+// call audit time block function
+auditTimeBlock();
 // ----------------------run functions to display time blocks ends here---------------------------------//
 // when input of task changed
 $(".input-group").on("change", "input[type='text']", function () {
