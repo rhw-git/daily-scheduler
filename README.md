@@ -4,9 +4,9 @@
 Create editabl daily planner for client  
 
 ## Built with
-*HTML*
-*CSS*
-*JavaScript*
+- HTML
+- CSS
+- JavaScript
 
 ## Website
 https://rhw-git.github.io/daily-scheduler/
