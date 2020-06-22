@@ -86,6 +86,10 @@ var saveTask = function (taskEl) {
 var loadTask = function () {
   var workHours = 8;
   tasksArr = JSON.parse(localStorage.getItem("dailySchedulerTasks"));
+  // if nothing in localStorage, create a new object to track all task status arrays
+  if (!tasksArr) {
+    tasksArr = tasksListArr;
+  }
   // loop array properties
   for (var i = 0; i < workHours; i++) {
     // check see whether the array have value
