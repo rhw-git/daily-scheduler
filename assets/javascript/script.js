@@ -109,11 +109,7 @@ var loadTask = function () {
   // loop array properties
   for (var i = 0; i < workHours; i++) {
     // check see whether the array have value
-    if (
-      tasksListArr[i] !== null &&
-      tasksListArr[i] &&
-      tasksListArr !== undefined
-    ) {
+    if (tasksListArr[i] !== null && tasksListArr[i] !== undefined) {
       // get current object's task property
       var taskEl = tasksListArr[i].task;
       // select current task input
