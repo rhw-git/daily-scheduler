@@ -9,7 +9,7 @@ Create editabl daily planner for client
 *JavaScript
 
 ## Website
-https://rhw-git.github.io/challenge-02-porfolio/
+https://rhw-git.github.io/daily-scheduler/
 
 ## Screenshot of the Website
 
