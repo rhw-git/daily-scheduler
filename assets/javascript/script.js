@@ -23,10 +23,10 @@ var createHour = function (blockNum) {
   return hourLi;
 };
 // create task container
-var createTask = function () {
+var createTask = function (blockNum) {
   var taskEl = $("<input>")
     .attr("type", "text")
-    .attr("id", "task-container")
+    .attr("id", "blockTask" + blockNum.toString())
     .addClass("form-control task")
     .attr("aria-label", "task or blank space to add task");
   return taskEl;
@@ -53,7 +53,7 @@ var createTimeBlock = function (blockNum) {
   var dateTime = createHour(blockNum);
   timeBlock.append(dateTime);
   // append task containter to inputGrouptime-block
-  var task = createTask();
+  var task = createTask(blockNum);
   timeBlock.append(task);
   // append save column with save icon tp inputGroup
   var saveBtn = createSaveBtn();
@@ -90,9 +90,12 @@ var loadTask = function () {
   for (var i = 0; i < workHours; i++) {
     // check see whether the array have value
     if (tasksArr[i] !== null && tasksArr[i] !== undefined) {
-      console.log(tasksArr[i].task);
+      // get current object's task property
+      var taskEl = tasksArr[i].task;
       // select current task input
-      $;
+      var taskContainer = $("#blockTask" + i);
+      // set the value of current task input to be the current object's task property
+      taskContainer.val(taskEl);
     }
   }
 };
@@ -118,6 +121,7 @@ $(".input-group").on("change", "input[type='text']", function () {
     .children(".hour")
     .attr("id")
     .replace("block", "");
+  console.log(timeBlock);
   //create obj to containt taskContent and task Time
   taskObj = {
     time: taskTime,
