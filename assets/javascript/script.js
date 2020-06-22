@@ -85,17 +85,17 @@ var saveTask = function (taskEl) {
 // load saved task from local storage
 var loadTask = function () {
   var workHours = 8;
-  tasksArr = JSON.parse(localStorage.getItem("dailySchedulerTasks"));
-  // if nothing in localStorage, create a new object to track all task status arrays
-  if (!tasksArr) {
-    tasksArr = tasksListArr;
-  }
+  tasksListArr = JSON.parse(localStorage.getItem("dailySchedulerTasks"));
   // loop array properties
   for (var i = 0; i < workHours; i++) {
     // check see whether the array have value
-    if (tasksArr[i] !== null && tasksArr[i] !== undefined) {
+    if (
+      tasksListArr[i] !== null &&
+      tasksListArr[i] &&
+      tasksListArr !== undefined
+    ) {
       // get current object's task property
-      var taskEl = tasksArr[i].task;
+      var taskEl = tasksListArr[i].task;
       // select current task input
       var taskContainer = $("#blockTask" + i);
       // set the value of current task input to be the current object's task property
