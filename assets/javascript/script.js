@@ -87,9 +87,9 @@ var saveTask = function (taskEl) {
   localStorage.setItem("tasks", JSON.stringify(taskEl));
 };
 // load saved task from local storage
-// change task
+// when input of task changed
 $(".input-group").on("change", "input[type='text']", function () {
-  // get changed taskEl
+  // get changed task
   var taskContent = $(this).val().trim();
   // get resptive time;
   var taskTime = $(this).prev().children(".hour").text();
@@ -106,12 +106,33 @@ $(".input-group").on("change", "input[type='text']", function () {
   };
   // append or update them to taskObj
   tasksListArr[timeBlock] = taskObj;
-  console.log(tasksListArr);
   // save task object to local storage
   saveTask(tasksListArr);
 });
-// value of task was changed
+// when save button clicked
 $(".saveBtn").click(function () {
-  // test whether save Btn is clicked
-  alert("clicked");
+  // get current task in this row
+  var taskContent = $(this).parent().prev().val().trim();
+  // get resptive time in this row
+  var taskTime = $(this)
+    .parent()
+    .siblings(".input-group-prepend")
+    .children(".hour")
+    .text();
+  // get resptive time's id
+  var timeBlock = $(this)
+    .parent()
+    .siblings(".input-group-prepend")
+    .children(".hour")
+    .attr("id")
+    .replace("block", "");
+  //create obj to containt taskContent and task Time
+  taskObj = {
+    time: taskTime,
+    task: taskContent,
+  };
+  // append or update them to taskObj
+  tasksListArr[timeBlock] = taskObj;
+  // save task object to local storage
+  saveTask(tasksListArr);
 });
