@@ -106,6 +106,10 @@ var saveTask = function (taskEl) {
 var loadTask = function () {
   var workHours = 9;
   tasksListArr = JSON.parse(localStorage.getItem("dailySchedulerTasks"));
+  // create empty arry if lockStorage is null
+  if (!tasksListArr) {
+    tasksListArr = [];
+  }
   // loop array properties
   for (var i = 0; i < workHours; i++) {
     // check see whether the array have value
