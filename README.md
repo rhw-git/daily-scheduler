@@ -12,7 +12,7 @@ Create editabl daily planner for client
 https://rhw-git.github.io/daily-scheduler/
 
 ## Screenshot of the Website
-![](assets/image/screenshot.png)
+![](assets/image/screenshot.PNG)
 
 ## Contribution
 Made with ❤️ by Ruohan
