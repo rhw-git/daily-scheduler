@@ -132,7 +132,12 @@ dupTimeBlock();
 // call display saved task in time block
 loadTask();
 // call audit time block function
+// audit while just open the page
 auditTimeBlock();
+// audit again every 15 mins
+setInterval(function () {
+  auditTimeBlock();
+}, 1000 * 60 * 15);
 // ----------------------run functions to display time blocks ends here---------------------------------//
 // when input of task changed
 $(".input-group").on("change", "input[type='text']", function () {
